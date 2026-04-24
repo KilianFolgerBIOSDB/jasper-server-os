@@ -1328,7 +1328,6 @@
                 <artifactId>cache-api</artifactId>
                 <version>${jcache.version}</version>
             </dependency>
-            <!-- Spring Cache Abstraction Support -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
