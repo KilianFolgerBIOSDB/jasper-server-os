@@ -32,25 +32,33 @@
 
 	<service>
 		<jcache:defaults default-template="defaultCacheTemplate" enable-management="true" enable-statistics="true">
-			<jcache:cache name="defaultRepoCache" template="defaultRepoCacheTemplate"/>
 		</jcache:defaults>
 	</service>
 
-    <persistence directory="${ehcache.disk.store.dir}/audit_hibernate"/>
+    <persistence directory="${ehcache.disk.store.dir}/engine"/>
 
 	<cache-template name="defaultCacheTemplate">
 		<expiry>
-            <ttl unit="seconds">10800</ttl>
+            <ttl unit="seconds">120</ttl>
 		</expiry>
 		<heap unit="entries">10000</heap>
 	</cache-template>
 
-	<cache-template name="defaultRepoCacheTemplate">
+	<cache alias="engineCache">
 		<expiry>
-            <ttl unit="days">2</ttl>
+            <ttl unit="days">5</ttl>
 		</expiry>
 		<heap unit="entries">10000</heap>
-	</cache-template>
+	</cache>
+
+	<cache alias="diagnosticCache">
+		<expiry>
+            <none/>
+		</expiry>
+		<resources>
+		    <heap unit="entries">10000</heap>
+            <disk persistent="true" unit="MB">10</disk>
+		</resources>
+	</cache>
 
 </config>
-
