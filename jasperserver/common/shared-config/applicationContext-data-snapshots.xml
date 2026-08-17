@@ -25,7 +25,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <beans profile="engine">
 <!-- JR data snapshots -->
@@ -64,7 +64,7 @@
 
 	<bean id="dataSnapshotCacheManager" factory-bean="cachingProvider" factory-method="getCacheManager">
 		<constructor-arg name="uri" value="classpath:ehcache-data-snapshots.xml"/>
-		<constructor-arg name="classLoader"><null/></constructor-arg>
+		<constructor-arg name="classLoader" type="java.lang.ClassLoader"><null/></constructor-arg>
 	</bean>
 
 	<bean id="snapshotMetadataCache" factory-bean="dataSnapshotCacheManager" factory-method="getCache" lazy-init="true">
