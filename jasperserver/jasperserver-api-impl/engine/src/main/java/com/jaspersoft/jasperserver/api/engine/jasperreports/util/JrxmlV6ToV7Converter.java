@@ -910,7 +910,7 @@ public final class JrxmlV6ToV7Converter {
 				// <xyzChart> -> <element kind="chart" chartType="XYZ">
 				Element renamed = renameElement(doc, el, TAG_ELEMENT);
 				renamed.setAttribute(ATTR_KIND, "chart");
-				renamed.setAttribute("chartType", CHART_ELEMENT_TYPES.get(chartTag).name());
+				renamed.setAttribute("chartType", CHART_ELEMENT_TYPES.get(chartTag).getName());
 				// move contents up from <chart>, <chart><reportElement>, <chartTitle>, <chartSubtitle>, and <chartLegend>
 				unwrapChildContents(renamed, TAG_CHART);
 				unwrapChildContents(renamed, TAG_REPORT_ELEMENT);
