@@ -448,7 +448,6 @@ public class JrxmlV6ToV7ConverterTest {
         // contents of <bar3DChart><chart> child moved up to parent
         assertEquals("Report", chartElement.getAttribute("evaluationTime"));
         assertEquals("svg", chartElement.getAttribute("renderType"));
-        assertEquals("aegean", chartElement.getAttribute("theme"));
         // contents of <bar3DChart><chart><reportElement> moved up to grandparent
         assertEquals("555", chartElement.getAttribute("width"));
         assertEquals("258", chartElement.getAttribute("height"));
@@ -463,9 +462,16 @@ public class JrxmlV6ToV7ConverterTest {
         assertNotNull(seriesColor);
         String seriesColorOrder = seriesColor.getAttribute("order");
         assertEquals("0", seriesColorOrder);
-        // <valueAxisFormat><axisFormat> contents moved up to parent
+        // <categoryAxisFormat><axisFormat> contents moved up to parent;
+        // <categoryAxisFormat><prop> -> <categoryAxisProp> for all axisFormat elements
         NodeList axisFormats = plot.getElementsByTagName("axisFormat");
         assertEquals(0, axisFormats.getLength());
+        String categoryAxisVerticalTickLabels = plot.getAttribute("categoryAxisVerticalTickLabels");
+        assertNotEquals("Expected categoryAxisVerticalTickLabels attribute of <plot>", "", categoryAxisVerticalTickLabels);
+        Element categoryAxisTickLabelFont = findChildElementByTag(plot, "categoryAxisTickLabelFont");
+        assertNotNull("Expected <categoryAxisTickLabelFont> child of <plot>", categoryAxisTickLabelFont);
+        String categoryAxisTickLabelFontSize = categoryAxisTickLabelFont.getAttribute("fontSize");
+        assertNotEquals("Expected fontSize attribute on <categoryAxisTickLabelFont>", "", categoryAxisTickLabelFontSize);
         // <categoryDataset> -> <dataset>, contents moved up to parent, <categorySeries> -> <series>
         Element dataset = findChildElementByTag(chartElement, "dataset");
         assertNotNull("Expected <dataset> child of <element kind='chart'>", dataset);

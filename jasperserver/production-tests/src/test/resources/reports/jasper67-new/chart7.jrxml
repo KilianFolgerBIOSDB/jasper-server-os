@@ -1,6 +1,7 @@
 <!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0  -->
 <jasperReport name="chartTest" language="java" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e1af1822-bc99-472a-89a3-346bad8223c0">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sugarcrm-jdbc"/>
 	<query language="sql"><![CDATA[SELECT industry AS "industry", billing_address_country AS "country", count(*) AS "accounts"
 
 FROM accounts GROUP BY industry, billing_address_country]]></query>
@@ -27,7 +28,8 @@ FROM accounts GROUP BY industry, billing_address_country]]></query>
 					<valueExpression><![CDATA[$F{accounts}]]></valueExpression>
 				</series>
 			</dataset>
-			<plot backcolor="#FFFFFF" categoryAxisVerticalTickLabels="true" categoryAxisLineColor="#000001">
+			<plot backcolor="#FFFFFF" categoryAxisVerticalTickLabels="true">
+				<categoryAxisTickLabelFont fontName="Serif" fontSize="11.0"/>
 				<itemLabel/>
 				<seriesColor order="0" color="#006080"/>
 			</plot>

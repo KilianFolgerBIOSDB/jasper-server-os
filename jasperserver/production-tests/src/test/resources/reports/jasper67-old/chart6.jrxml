@@ -46,7 +46,11 @@ FROM accounts GROUP BY industry, billing_address_country]]>
 					</plot>
 					<itemLabel/>
 					<categoryAxisFormat>
-						<axisFormat verticalTickLabels="true" axisLineColor="#000001"/>
+						<axisFormat verticalTickLabels="true">
+							<tickLabelFont>
+								<font fontName="Serif" size="11"/>
+							</tickLabelFont>
+						</axisFormat>
 					</categoryAxisFormat>
 					<valueAxisFormat>
 						<axisFormat/>
