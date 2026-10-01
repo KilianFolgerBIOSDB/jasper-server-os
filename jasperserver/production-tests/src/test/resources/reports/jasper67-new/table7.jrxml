@@ -28,15 +28,15 @@
 		</box>
 	</style>
 	<dataset name="account" uuid="d5227752-935e-4f6c-a3e1-a21a620900f9">
-		<query language="SQL"><![CDATA[SELECT "ID",
-	"PARENT_ID",
-	"NAME",
-	"CREATED_BY",
-	"ASSIGNED_USER_ID",
-	"MODIFIED_USER_ID",
-	"DATE_MODIFIED",
-	"DATE_ENTERED"
-FROM "ACCOUNTS"]]></query>
+		<query language="SQL"><![CDATA[SELECT id,
+	parent_id,
+	name,
+	created_by,
+	assigned_user_id,
+	modified_user_id,
+	date_modified,
+	date_entered
+FROM accounts]]></query>
 		<field name="ID" class="java.lang.String">
 			<property name="com.jaspersoft.studio.field.name" value="ID"/>
 			<property name="com.jaspersoft.studio.field.label" value="ID"/>
