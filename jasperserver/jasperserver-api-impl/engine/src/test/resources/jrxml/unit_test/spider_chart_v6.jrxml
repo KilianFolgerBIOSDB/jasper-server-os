@@ -36,7 +36,9 @@ GROUP BY industry]]>
 					</jr:chartSettings>
 					<jr:spiderDataset>
 						<dataset>
-							<datasetRun subDataset="nb_accounts" uuid="90699ec8-af9f-4d1b-8f52-ca623466c731"/>
+							<datasetRun subDataset="nb_accounts" uuid="90699ec8-af9f-4d1b-8f52-ca623466c731">
+								<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+							</datasetRun>
 						</dataset>
 						<categorySeries>
 							<seriesExpression><![CDATA["Accounts"]]></seriesExpression>

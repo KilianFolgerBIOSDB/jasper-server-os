@@ -87,6 +87,10 @@ public class EngineServiceTestsTestNG extends BaseServiceSetupTestNG  {
         createV7ChartReport();
         createV6ChartReportTemplate();
         createV6ChartReport();
+        createV7SpiderChartReportTemplate();
+        createV7SpiderChartReport();
+        createV6SpiderChartReportTemplate();
+        createV6SpiderChartReport();
     }
 
     @AfterClass()
@@ -96,6 +100,10 @@ public class EngineServiceTestsTestNG extends BaseServiceSetupTestNG  {
 
         // delete resources for these Engine Service tests
         // (as usual, we delete resources in the opposite order they were created)
+        deleteV6SpiderChartReport();
+        deleteV6SpiderChartReportTemplate();
+        deleteV7SpiderChartReport();
+        deleteV7SpiderChartReportTemplate();
         deleteV6ChartReport();
         deleteV6ChartReportTemplate();
         deleteV7ChartReport();
@@ -312,6 +320,38 @@ public class EngineServiceTestsTestNG extends BaseServiceSetupTestNG  {
         m_logger.info("EngineServiceTestsTestNG => doExecuteV6ChartTest() called");
         setAuthenticatedUser(BaseServiceSetupTestNG.USER_JASPERADMIN);
 		ReportUnitResult result = (ReportUnitResult) getEngineService().execute(m_context, new ReportUnitRequest("/reports/samples/chart6", new HashMap()));
+		assertNotNull(result);
+		JasperPrint jasperPrint = result.getJasperPrint();
+		assertNotNull(jasperPrint);
+		List pages = jasperPrint.getPages();
+		assertNotNull(pages);
+		assertTrue(pages.size() > 0);
+	}
+
+    /**
+     *  doExecuteV7ChartTest
+     */
+    @Test()
+	public void doExecuteV7SpiderChartTest() throws Exception	{
+        m_logger.info("EngineServiceTestsTestNG => doExecuteV7SpiderChartTest() called");
+        setAuthenticatedUser(BaseServiceSetupTestNG.USER_JASPERADMIN);
+		ReportUnitResult result = (ReportUnitResult) getEngineService().execute(m_context, new ReportUnitRequest("/reports/samples/spiderChart7", new HashMap()));
+		assertNotNull(result);
+		JasperPrint jasperPrint = result.getJasperPrint();
+		assertNotNull(jasperPrint);
+		List pages = jasperPrint.getPages();
+		assertNotNull(pages);
+		assertTrue(pages.size() > 0);
+	}
+
+    /**
+     *  doExecuteV6ChartTest
+     */
+    @Test()
+	public void doExecuteV6SpiderChartTest() throws Exception	{
+        m_logger.info("EngineServiceTestsTestNG => doExecuteV6SpiderChartTest() called");
+        setAuthenticatedUser(BaseServiceSetupTestNG.USER_JASPERADMIN);
+		ReportUnitResult result = (ReportUnitResult) getEngineService().execute(m_context, new ReportUnitRequest("/reports/samples/spiderChart6", new HashMap()));
 		assertNotNull(result);
 		JasperPrint jasperPrint = result.getJasperPrint();
 		assertNotNull(jasperPrint);
@@ -570,6 +610,88 @@ public class EngineServiceTestsTestNG extends BaseServiceSetupTestNG  {
     private void deleteV7ChartReportTemplate() {
         m_logger.info("EngineServiceTestsTestNG => deleteV7ChartReportTemplate() is deleting /reports/samples/chart7ReportTemplate");
         deleteResource("/reports/samples/chart7ReportTemplate");
+    }
+
+    private void createV7SpiderChartReport() {
+        m_logger.info("EngineServiceTestsTestNG => createV7ChartReport() is creating /reports/samples/spiderChart7");
+
+        ReportUnit unit = (ReportUnit) getUnsecureRepositoryService().newResource(null, ReportUnit.class);
+        unit.setName("spiderChart7");
+        unit.setLabel("Jasper 7 Spider Chart Report");
+        unit.setDescription("Jasper 7 report with a spider chart");
+        unit.setParentFolder("/reports/samples");
+
+		unit.setDataSourceReference("/datasources/JServerJdbcDS");
+        unit.setMainReportReference("/reports/samples/spiderChart7ReportTemplate");
+
+        getUnsecureRepositoryService().saveResource(null, unit);
+    }
+
+    private void deleteV7SpiderChartReport() {
+        m_logger.info("EngineServiceTestsTestNG => deleteV7ChartReport() is deleting /reports/samples/spiderChart7");
+        deleteResource("/reports/samples/spiderChart7");
+    }
+
+    private void createV6SpiderChartReportTemplate() {
+        m_logger.info("EngineServiceTestsTestNG => createV6SpiderChartReportTemplate() is creating /reports/samples/spiderChart6ReportTemplate");
+
+        FileResource reportRes = (FileResource) getUnsecureRepositoryService().newResource(null, FileResource.class);
+        reportRes.setFileType(FileResource.TYPE_JRXML);
+        reportRes.setName("spiderChart6ReportTemplate");
+        reportRes.setLabel("Jasper 6 Spider Chart Report");
+        reportRes.setDescription("Report showing on-the-fly conversion of a Jasper 6 report with a spider chart");
+        reportRes.setParentFolder("/reports/samples");
+
+        InputStream jrxml = getClass().getResourceAsStream("/reports/jasper67-old/spiderchart6.jrxml");
+        reportRes.readData(jrxml);
+
+        getUnsecureRepositoryService().saveResource(null, reportRes);
+    }
+
+    private void deleteV6SpiderChartReportTemplate() {
+        m_logger.info("EngineServiceTestsTestNG => deleteV6SpiderChartReportTemplate() is deleting /reports/samples/spiderChart6ReportTemplate");
+        deleteResource("/reports/samples/spiderChart6ReportTemplate");
+    }
+
+    private void createV6SpiderChartReport() {
+        m_logger.info("EngineServiceTestsTestNG => createV6SpiderChartReport() is creating /reports/samples/spiderChart6");
+
+        ReportUnit unit = (ReportUnit) getUnsecureRepositoryService().newResource(null, ReportUnit.class);
+        unit.setName("spiderChart6");
+        unit.setLabel("Jasper 6 Spider Chart Report");
+        unit.setDescription("Report showing on-the-fly conversion of a Jasper 6 report with a spider chart");
+        unit.setParentFolder("/reports/samples");
+
+		unit.setDataSourceReference("/datasources/JServerJdbcDS");
+        unit.setMainReportReference("/reports/samples/spiderChart6ReportTemplate");
+
+        getUnsecureRepositoryService().saveResource(null, unit);
+    }
+
+    private void deleteV6SpiderChartReport() {
+        m_logger.info("EngineServiceTestsTestNG => deleteV6SpiderChartReport() is deleting /reports/samples/spiderChart6");
+        deleteResource("/reports/samples/spiderChart6");
+    }
+
+    private void createV7SpiderChartReportTemplate() {
+        m_logger.info("EngineServiceTestsTestNG => createV7SpiderChartReportTemplate() is creating /reports/samples/spiderChart7ReportTemplate");
+
+        FileResource reportRes = (FileResource) getUnsecureRepositoryService().newResource(null, FileResource.class);
+        reportRes.setFileType(FileResource.TYPE_JRXML);
+        reportRes.setName("spiderChart7ReportTemplate");
+        reportRes.setLabel("Jasper 7 Spider Chart Report");
+        reportRes.setDescription("Jasper 7 report with a spider chart");
+        reportRes.setParentFolder("/reports/samples");
+
+        InputStream jrxml = getClass().getResourceAsStream("/reports/jasper67-new/spiderchart7.jrxml");
+        reportRes.readData(jrxml);
+
+        getUnsecureRepositoryService().saveResource(null, reportRes);
+    }
+
+    private void deleteV7SpiderChartReportTemplate() {
+        m_logger.info("EngineServiceTestsTestNG => deleteV7SpiderChartReportTemplate() is deleting /reports/samples/spiderChart7ReportTemplate");
+        deleteResource("/reports/samples/spiderChart7ReportTemplate");
     }
 
     private void createV7ChartReport() {
