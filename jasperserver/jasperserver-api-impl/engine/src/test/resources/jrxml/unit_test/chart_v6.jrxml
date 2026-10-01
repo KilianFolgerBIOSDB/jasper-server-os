@@ -25,10 +25,10 @@ FROM accounts GROUP BY industry, billing_address_country]]>
 	<title>
 		<band height="258" splitType="Stretch">
 			<bar3DChart>
-				<chart evaluationTime="Report" renderType="svg" theme="aegean">
+				<chart evaluationTime="Report" renderType="svg">
 					<reportElement x="0" y="0" width="555" height="258" uuid="116a4a50-ad8b-416c-b2ef-c73ccfc8e459"/>
 					<chartTitle>
-						<titleExpression><![CDATA[Accounts]]></titleExpression>
+						<titleExpression><![CDATA["Accounts"]]></titleExpression>
 					</chartTitle>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -46,7 +46,7 @@ FROM accounts GROUP BY industry, billing_address_country]]>
 					</plot>
 					<itemLabel/>
 					<categoryAxisFormat>
-						<axisFormat/>
+						<axisFormat verticalTickLabels="true" axisLineColor="#000001"/>
 					</categoryAxisFormat>
 					<valueAxisFormat>
 						<axisFormat/>

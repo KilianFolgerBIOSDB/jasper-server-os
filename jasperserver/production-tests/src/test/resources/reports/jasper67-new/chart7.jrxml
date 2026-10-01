@@ -18,8 +18,8 @@ FROM accounts GROUP BY industry, billing_address_country]]></query>
 	</field>
 	<background splitType="Stretch"/>
 	<title height="258" splitType="Stretch">
-		<element kind="chart" chartType="bar3D" uuid="116a4a50-ad8b-416c-b2ef-c73ccfc8e459" x="0" y="0" width="555" height="258" evaluationTime="Report" renderType="svg" theme="aegean">
-			<titleExpression><![CDATA[Accounts]]></titleExpression>
+		<element kind="chart" chartType="bar3D" uuid="116a4a50-ad8b-416c-b2ef-c73ccfc8e459" x="0" y="0" width="555" height="258" evaluationTime="Report" renderType="svg">
+			<titleExpression><![CDATA["Accounts"]]></titleExpression>
 			<dataset kind="category">
 				<series>
 					<seriesExpression><![CDATA[$F{country}]]></seriesExpression>
@@ -27,7 +27,7 @@ FROM accounts GROUP BY industry, billing_address_country]]></query>
 					<valueExpression><![CDATA[$F{accounts}]]></valueExpression>
 				</series>
 			</dataset>
-			<plot backcolor="#FFFFFF">
+			<plot backcolor="#FFFFFF" categoryAxisVerticalTickLabels="true" categoryAxisLineColor="#000001">
 				<itemLabel/>
 				<seriesColor order="0" color="#006080"/>
 			</plot>
